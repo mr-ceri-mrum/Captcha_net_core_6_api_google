@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        input {
+            font-size: 20px;
+        }
+    </style>
+    <title>Google reCPATCHA Implementation - Codingsonata.com</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+<div id="captchaDiv"></div>
+<script src="https://www.google.com/recaptcha/api.js?onload=getCaptcha&render=explicit&sitekey=6LfZrlwkAAAAAJbS-kYml5mqWj49xKRHoMze1oPo"></script>
+<script>
+    window.sd = function(token){
+        document.writeln(token);
+    }
+
+    getCaptcha = function(){
+        window.captcha = grecaptcha.render('captchaDiv',{
+            'sitekey' : '6LfZrlwkAAAAAJbS-kYml5mqWj49xKRHoMze1oPo',
+            'callback': sd,
+            'size':'visible'
+        })
+    }
+
+    function onPageLoad(){
+        grecaptcha.ready(function(){
+            grecaptcha.execute();
+        });
+    }
+    onLoad(onPageLoad());
+</script>
+</body>
+</html>
